@@ -1,49 +1,34 @@
-import java.util.*;
-
-public class PasswordGenerator {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        String upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        String lower = "abcdefghijklmnopqrstuvwxyz";
-        String digits = "0123456789";
-        String symbols = "!@#$%^&*()-_=+[{]}|;:',<.>/?";
-
-        System.out.println("Welcome to Password Generator!");
-        System.out.print("Enter desired password length: ");
-        int length = scanner.nextInt();
-        scanner.nextLine(); // consume newline
-
-        System.out.print("Include uppercase letters? (y/n): ");
-        boolean includeUpper = scanner.nextLine().equalsIgnoreCase("y");
-
-        System.out.print("Include lowercase letters? (y/n): ");
-        boolean includeLower = scanner.nextLine().equalsIgnoreCase("y");
-
-        System.out.print("Include digits? (y/n): ");
-        boolean includeDigits = scanner.nextLine().equalsIgnoreCase("y");
-
-        System.out.print("Include symbols? (y/n): ");
-        boolean includeSymbols = scanner.nextLine().equalsIgnoreCase("y");
-
-        String characterPool = "";
-        if (includeUpper) characterPool += upper;
-        if (includeLower) characterPool += lower;
-        if (includeDigits) characterPool += digits;
-        if (includeSymbols) characterPool += symbols;
-
-        if (characterPool.isEmpty()) {
-            System.out.println("You must select at least one character type.");
-            return;
+include <stdio.h>
+#include <string.h>
+int main()
+{
+    int number1,number2,count=0;
+    scanf("%d%d",&number1,&number2);
+    if(number1< number2)
+        printf("Not possible");
+    else
+    {
+        int flag=0;
+        int temp1,temp2;
+        while(number1!=0 && number2!=0)
+        {
+            temp1=0;
+            temp2=number2%10;
+            if(flag==1)
+                temp1=number1%10-1;
+            else
+                temp1=number1%10;
+            if(temp1< temp2)
+            {
+                count+=1;
+                flag=1;
+            }
+            else
+                flag=0;
+            number1=number1/10;
+            number2=number2/10; 
         }
-
-        Random random = new Random();
-        StringBuilder password = new StringBuilder();
-
-        for (int i = 0; i < length; i++) {
-            int index = random.nextInt(characterPool.length());
-            password.append(characterPool.charAt(index));
-        }
-
-        System.out.println("Your generated password: " + password);
+        printf("%d",count);
     }
+    return 0;
 }
