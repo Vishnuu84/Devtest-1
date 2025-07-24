@@ -1,0 +1,49 @@
+import java.util.*;
+
+public class PasswordGenerator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String lower = "abcdefghijklmnopqrstuvwxyz";
+        String digits = "0123456789";
+        String symbols = "!@#$%^&*()-_=+[{]}|;:',<.>/?";
+
+        System.out.println("Welcome to Password Generator!");
+        System.out.print("Enter desired password length: ");
+        int length = scanner.nextInt();
+        scanner.nextLine(); // consume newline
+
+        System.out.print("Include uppercase letters? (y/n): ");
+        boolean includeUpper = scanner.nextLine().equalsIgnoreCase("y");
+
+        System.out.print("Include lowercase letters? (y/n): ");
+        boolean includeLower = scanner.nextLine().equalsIgnoreCase("y");
+
+        System.out.print("Include digits? (y/n): ");
+        boolean includeDigits = scanner.nextLine().equalsIgnoreCase("y");
+
+        System.out.print("Include symbols? (y/n): ");
+        boolean includeSymbols = scanner.nextLine().equalsIgnoreCase("y");
+
+        String characterPool = "";
+        if (includeUpper) characterPool += upper;
+        if (includeLower) characterPool += lower;
+        if (includeDigits) characterPool += digits;
+        if (includeSymbols) characterPool += symbols;
+
+        if (characterPool.isEmpty()) {
+            System.out.println("You must select at least one character type.");
+            return;
+        }
+
+        Random random = new Random();
+        StringBuilder password = new StringBuilder();
+
+        for (int i = 0; i < length; i++) {
+            int index = random.nextInt(characterPool.length());
+            password.append(characterPool.charAt(index));
+        }
+
+        System.out.println("Your generated password: " + password);
+    }
+}
