@@ -6,7 +6,7 @@ public class Main
 		Scanner sc=new Scanner(System.in);
 		int number1=sc.nextInt();
 		int number2=sc.nextInt();
- 		int count=1;
+ 		int count=0;
         if(number1< number2)
 	{
 		System.out.println("Not possible");
