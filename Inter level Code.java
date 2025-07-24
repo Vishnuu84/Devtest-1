@@ -16,7 +16,7 @@ public class Main
 		boolean flag=false;
 		while(number1!=0 && number2!=0)
 		{
-			int temp=0;
+			int temp=1;
 			int temp2=number2%10;
 			if(flag)
 				temp1=number1%10-1;
